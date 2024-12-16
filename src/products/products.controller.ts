@@ -27,7 +27,7 @@ import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 export class ProductsController {
   constructor(
     private readonly productsService: ProductsService,
-    private configService: ConfigService,
+    // private configService: ConfigService,
   ) {}
 
   // @Permissions([

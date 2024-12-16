@@ -16,3 +16,5 @@ export class Product {
 
 //Creating the Product Schema
 export const ProductSchema = SchemaFactory.createForClass(Product);
+
+//NB> Schemas are used to define MODELS. Models are responsible for creating and reading documents from the underlying MongoDB database

@@ -9,12 +9,12 @@ import { Product, ProductSchema } from './schemas/product.schema';
   imports: [
     AuthModule,
     MongooseModule.forFeature([
-      //productModel
+      //productModel creation:
       {
         //collection name = products
         name: Product.name, //Product class name in @schema.
         schema: ProductSchema,
-      },
+      }, //this atomatically creates a products collection in the db.
     ]), // we import this to any module where we want to use products-model to access database
   ],
   controllers: [ProductsController],
