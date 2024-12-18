@@ -1,4 +1,4 @@
-import { Logger, Module } from '@nestjs/common';
+import { Logger, MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { UserModule } from './user/user.module';
 import { ProductsModule } from './products/products.module';
 import { GlobalModule } from './global/global.module';
@@ -10,6 +10,7 @@ import { JwtModule } from '@nestjs/jwt';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { RolesModule } from './roles/roles.module';
 import config from './config/config';
+import { LoggerMiddleware } from './middlewares/logger.middleware';
 
 //AppModule is the root module of our application:
 @Module({
@@ -44,7 +45,11 @@ import config from './config/config';
     RolesModule,
   ],
   controllers: [AppController],
-  providers: [AppService, Logger],
+  providers: [AppService, Logger], //remove AppService from here.its not doing anything in the provider.check first
   exports: [],
 })
-export class AppModule {}
+export class AppModule implements NestModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer.apply(LoggerMiddleware).forRoutes('*');
+  }
+}

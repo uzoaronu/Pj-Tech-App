@@ -6,7 +6,7 @@ import { HttpExceptionFilter } from './exception-filters/http-exception.filter';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create(AppModule); //creating a new nestjs application using AppModule
 
   // Setup Swagger configuration
   const config = new DocumentBuilder()
@@ -36,6 +36,7 @@ async function bootstrap() {
   );
 
   const configS = app.get(ConfigService);
+
   await app.listen(configS.get('PORT'));
   // await app.listen(3010);
 }

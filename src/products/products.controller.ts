@@ -7,6 +7,8 @@ import {
   Param,
   Delete,
   UseGuards,
+  Req,
+  Request,
 } from '@nestjs/common';
 import { ProductsService } from './products.service';
 import { CreateProductDto } from './dto/create-product.dto';
@@ -18,6 +20,7 @@ import { Permissions } from 'src/decorators/permissions.decorators';
 import { Resource } from 'src/roles/enums/resource.enum';
 import { Action } from 'src/roles/enums/action.enum';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import { REQUEST } from '@nestjs/core';
 
 @UseGuards(AuthenticationGuard, AuthorizationGuard)
 @ApiTags('Products')
@@ -59,6 +62,8 @@ export class ProductsController {
   async getAllProducts() {
     return this.productsService.getAllProducts();
   }
+
+  //@Body(),@Query(),@Param(),@Req(),@Res()
 
   // @Get(':id')
   // findOne(@Param('id') id: string) {
